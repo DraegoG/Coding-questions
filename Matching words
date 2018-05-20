@@ -1,0 +1,116 @@
+QUESTION: Write a program to check for the resembling word. Eg. f_r_z ...strings that satisfy are "ferez,foroz,firid" etc.
+
+SOLUTION:
+IN JAVA:
+import java.util.Scanner;
+
+public class Match 
+{
+
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the string 1");
+		String input1=sc.next();
+		System.out.println("enter the string 2");
+		String input2=sc.next();
+	
+		input1=input1.toUpperCase();
+		//System.out.println(input1);
+		input2=input2.toUpperCase();
+		//System.out.println(input2);
+		String arr[]=input2.split(":");
+		String output="";
+		int flag=1; //yaha
+		for(int i=0;i<arr.length;i++)
+		{ 
+			String temp="";
+			temp=arr[i];
+			if(temp.length()==input1.length())
+			{
+				for(int j=0;j<input1.length();j++)
+				{
+				    if( !(temp.charAt(j)==input1.charAt(j)||input1.valueOf(j)=="_" ))
+			        {
+				         flag=0;
+				         break;
+			        }
+				    
+				}
+				if(flag==1)	output=output+temp+":";
+			}
+			
+		}
+		String output1=output.substring(0,output.length()-1);
+		System.out.println(output1);
+	}
+}
+
+
+
+
+
+
+
+IN C++:
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int flag=1,j=0;
+	string s1,s2,temp="",s3="",s4="";
+	cin>>s1;
+	cin>>s2;
+	
+    string arr[50]={};
+    
+	transform(s1.begin(), s1.end(), s1.begin(), ::toupper);
+	transform(s2.begin(), s2.end(), s2.begin(), ::toupper);
+	
+	
+	for(int i=0, j=0; i<s2.length(); i++)
+	{
+	    if(s2[i]!=':')
+	    {
+	        temp+=s2[i];
+	    }
+        else if(s2[i]==':' )
+	    {
+	        if(temp.length()==s1.length())
+	        {
+	            arr[j]=temp;
+	            j++;
+	        }
+	        temp="";
+	    }
+	}
+	
+	temp="";
+	
+	for(int i=0; i<=j; i++ )
+	{
+	    flag=1;
+	    for(int x=0; x<arr[i].length(); x++)
+	    {
+	        temp=arr[i];
+	        if( temp[x]==s1[x] || s1[x]=='_')
+	        {
+	            s3+=temp[x];
+	            cout<<s3<<endl;
+	        }
+	        else
+	        {
+	            flag=0;
+	        }
+	    }
+	    if(flag==1)
+	    {
+	        if(s4=="") s4=s4+s3;
+	        
+	        else  s4=s4+":"+s3;
+	    }
+	}
+	cout<<s4;
+}
